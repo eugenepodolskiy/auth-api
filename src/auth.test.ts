@@ -2,6 +2,14 @@ import pool from './db'
 import { register, login, verifyToken } from './auth'
 
 beforeAll(async () => {
+    await pool.query(`
+        CREATE TABLE IF NOT EXISTS users (
+            id SERIAL PRIMARY KEY,
+            email VARCHAR(255) UNIQUE NOT NULL,
+            password VARCHAR(255) NOT NULL,
+            created_at TIMESTAMP NOT NULL DEFAULT NOW()
+        )
+    `)
     await pool.query('DELETE FROM users')
 })
 
