@@ -1,0 +1,42 @@
+### Register
+POST http://localhost:3003/api/auth/register
+Content-Type: application/json
+
+{
+    "email": "max@test.com",
+    "password": "password123"
+}
+
+### Login
+POST http://localhost:3003/api/auth/login
+Content-Type: application/json
+
+{
+    "email": "max@test.com",
+    "password": "password123"
+}
+
+### Get profile (paste token from register/login response)
+GET http://localhost:3003/api/profile
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoibWF4QHRlc3QuY29tIiwiaWF0IjoxNzc5Mjc3OTUzLCJleHAiOjE3NzkzNjQzNTN9.TczQ6QIFNkKZ_rL5mLUmDhVbrJeAMoEWTyvje7EjJm4
+
+### Try to get profile without token
+GET http://localhost:3003/api/profile
+
+### Try to register same email again
+POST http://localhost:3003/api/auth/register
+Content-Type: application/json
+
+{
+    "email": "max@test.com",
+    "password": "password123"
+}
+
+### Try wrong password
+POST http://localhost:3003/api/auth/login
+Content-Type: application/json
+
+{
+    "email": "max@test.com",
+    "password": "wrongpassword"
+}
