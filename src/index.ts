@@ -2,8 +2,11 @@ import express from 'express'
 import dotenv from 'dotenv'
 import { register, login } from './auth'
 import { authenticate, AuthRequest } from './middleware'
+import { initDb } from './db'
 
 dotenv.config()
+
+initDb().catch(err => console.error('Database error:', err))
 
 const app = express()
 const PORT = Number(process.env.PORT) || 3003
